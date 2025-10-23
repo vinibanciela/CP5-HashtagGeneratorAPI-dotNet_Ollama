@@ -20,24 +20,32 @@ O projeto demonstra:
 
 ## Estrutura do Projeto
 
-A solução foi organizada seguindo as melhores práticas, separando os modelos de dados (DTOs) do arquivo principal.
+A solução foi organizada seguindo boas práticas de desenvolvimento em .NET,
+separando os modelos de dados (Models e DTOs) do código principal,
+incluindo um arquivo .http para testes via VS Code e um README.md explicativo.
 
 ```
-HASHTAGGENERATOR.API/
-├── HashtagGenerator.Api.sln
-├── HashtagGenerator.Api.csproj
-├── Program.cs
+HASHTAGGENERATORAPI-DOTNET_OLLAMA/
+├── HashtagGenerator.Api.sln       # Arquivo de solução (.sln) — agrupa e referencia o projeto principal (em caso de expansão futura)
+├── HashtagGenerator.Api.csproj    # Arquivo de configuração do projeto (.NET 8 Web API)
+├── Program.cs                     # Código principal da Minimal API (validações, integração e endpoint /hashtags)
+│
 ├── Models/
-│   ├── HashtagRequest.cs
-│   ├── HashtagResponse.cs
-│   └── ErrorResponse.cs
+│   ├── HashtagRequest.cs          # Modelo de entrada (text, count, model)
+│   ├── HashtagResponse.cs         # Modelo de saída em sucesso (model, count, hashtags)
+│   └── ErrorResponse.cs           # Modelo de saída em erro (message)
+│
 ├── OllamaDTOs/
-│   ├── OllamaRequest.cs
-│   └── OllamaResponse.cs
-├── Requests.http
-└── README.md
+│   ├── OllamaRequest.cs           # Estrutura de requisição enviada ao Ollama
+│   └── OllamaResponse.cs          # Estrutura de resposta retornada pelo Ollama
+│
+├── Requests.http                  # Arquivo de testes (VS Code REST Client)
+└── README.md                      # Documentação explicativa e guia de execução
+
 
 ```
+Arquivos auxiliares (appsettings.json, appsettings.Development.json, launchSettings.json, .gitignore) estão presentes no projeto, mas foram omitidos da estrutura para simplificação visual.
+Esses arquivos são responsáveis por configurações de ambiente, perfis de execução e regras de versionamento, e não afetam a lógica principal da API.
 
 ## Pré-requisitos
 
