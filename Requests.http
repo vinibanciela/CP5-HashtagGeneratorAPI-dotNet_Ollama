@@ -1,0 +1,105 @@
+### 0) Health
+GET http://localhost:5172/
+
+### 1) Erro: text vazio (deve 400)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "   ",
+  "count": 5
+}
+
+### 2) Erro: count = 0 (deve 400)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Lançamento de coleção de verão",
+  "count": 0
+}
+
+### 3) Erro: count negativo (deve 400)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Aplicativo de finanças pessoais",
+  "count": -3
+}
+
+### 4) Erro: count > 30 (deve 400)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Campanha de e-commerce",
+  "count": 31
+}
+
+### 5) Erro: modelo inexistente (Ollama deve falhar; API retorna 400 com mensagem útil)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Evento de IA e Cloud",
+  "count": 8,
+  "model": "modelo-que-nao-existe:xyz"
+}
+
+### 6) Modo estrito — tentativa de forçar 400 (texto curto + N alto; pode ou não falhar)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "oi",
+  "count": 10,
+  "model": "llama3.2:3b"
+}
+
+### 7) JSON malformado (falta vírgula) — VS Code deve avisar antes, mas a API também retorna 400
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Teste JSON malformado"
+  "count": 5
+}
+
+### 8) Geração ok — sem count (usa padrão = 10)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Aplicativo de alimentação saudável com receitas low-carb e lista de compras",
+  "model": "llama3.2:3b"
+}
+
+### 9) Geração ok — com count=8
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Promoção relâmpago de eletrônicos com frete grátis",
+  "count": 8,
+  "model": "llama3.2:3b"
+}
+
+### 10) Geração ok — sem modelo explícito (usa padrão = llama3.2:3b)
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Aplicativo de entregas com cupons de desconto e rastreamento em tempo real",
+  "count": 7
+}
+
+### 11) Geração ok — modelo phi4-mini
+POST http://localhost:5172/hashtags
+Content-Type: application/json
+
+{
+  "text": "Plataforma de cursos online com planos personalizados",
+  "count": 6,
+  "model": "phi4-mini"
+}
