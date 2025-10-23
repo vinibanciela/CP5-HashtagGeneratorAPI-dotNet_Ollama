@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "yu6u9JPAy/L7CvFPzZ0NppyeYWQxo+H1LOufmZD2Mjo=",
+  "Source": "HashtagGenerator.Api",
+  "BasePath": "_content/HashtagGenerator.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
