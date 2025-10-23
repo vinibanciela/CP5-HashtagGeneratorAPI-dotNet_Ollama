@@ -64,12 +64,12 @@ HASHTAGGENERATOR.API/
    curl http://localhost:11434/api/tags
    ```
 
-2. **Clonar o projeto, Rodar e Abrir o VS Code**
+2. **Clonar o projeto, Abrir o VS Code e Rodar o Projeto**
     ```bash
     git clone https://github.com/vinibanciela/CP5-HashtagGeneratorAPI-dotNet_Ollama.git
-    cd HashtagGenerator.Api
-    dotnet run
+    cd HashtagGeneratorAPI-dotNet_Ollama
     code .
+    dotnet run
     ```
     (A API irá iniciar,  em http://localhost:5172)
 
