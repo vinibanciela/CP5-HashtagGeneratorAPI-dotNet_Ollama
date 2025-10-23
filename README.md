@@ -10,7 +10,7 @@
 
 API minimalista em **.NET 8** que consome a **Ollama REST API** rodando localmente para gerar **N hashtags** a partir de um texto de entrada.  
 O projeto demonstra:
-- Consumo de LLM local via `POST /api/generate`;
+- Consumo de LLM local via `POST /api/generate` com `stream=false`;
 - **Structured outputs** com `json_schema` quando suportado;
 - **Fallback automático** para `format: "json"` (compatível com qualquer modelo);
 - Validações e mensagens de erro úteis;
@@ -87,9 +87,12 @@ Abra `Requests.http` e clique em `Send Request`.
 
 ## Critérios de aceitação atendidos
 
-* **POST /hashtags** recebe `{ text, count, model }` e retorna `200 OK` com `{ model, count, hashtags[] }`.
+* Consome Ollama via **HttpClient** com `stream=false` e `structured outputs (JSON Schema)`.
+*  **POST /hashtags** recebe `{ text, count, model }` e retorna `200 OK` com `{ model, count, hashtags[] }`.
 * Gera **exatamente N** hashtags, iniciando com `#`, **sem espaços** e **sem duplicatas** (há sanitização pós-modelo).
+* Arquivo **Requests.http** incluído para teste com REST CLIENT.
 * Quando **`count` é omitido**, usa **padrão = 10**. Quando `count > 30`, retorna **400** com mensagem útil.
-* Em erros (entrada inválida, indisponibilidade do Ollama, resposta inválida, etc), retorna **400** com mensagem clara.
-* Consome Ollama via **HttpClient** com `stream=false` e **structured outputs (JSON Schema).
-* Arquivo **Requests.http** incluído poara teste com REST CLIENT.
+* Quando **`model` é omitido**, usa padrão `ollama pull llama3.2:3b`.
+* Possibilidade de utilizar outros modelos com **Fallback automático** para `format: "json"`.
+* Em erros (entrada inválida, indisponibilidade do Ollama, resposta inválida, retorna **400** com mensagem clara.
+
