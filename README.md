@@ -53,12 +53,9 @@ Esses arquivos são responsáveis por configurações de ambiente, perfis de exe
 |---|---|---|
 | [.NET SDK](https://dotnet.microsoft.com/download) | 8.0+ | Necessário para compilar/rodar a API |
 | [Ollama](https://ollama.com/download) | 0.12.x | Servidor local em `http://localhost:11434` |
-| Modelos Ollama | `llama3.2:3b` ou outros | `ollama pull llama3.2:3b` |
-| VS Code + extensão | REST Client (`humao.rest-client`) | Envia requisições via `Requests.http` |
+| Modelos Ollama | `llama3.2:3b` ou outros | baixar com `ollama pull llama3.2:3b` |
+| [VS Code](https://code.visualstudio.com/download) + extensão | [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) (`humao.rest-client`) | Envia requisições via `Requests.http` |
 
-> Verifique o Ollama:  
-> `curl http://localhost:11434/api/tags`  
-> Deve listar os modelos instalados (ex.: `llama3.2:3b`, outros).
 
 ---
 
@@ -66,22 +63,22 @@ Esses arquivos são responsáveis por configurações de ambiente, perfis de exe
 
 1. **Suba (ou confirme) o Ollama**
    ```bash
-   # se necessário
+   # se necessário - inicia o servidor Ollama
    ollama serve
-   # ou apenas teste
+   # ou apenas teste - verifica se está rodando e lista os modelos 
    curl http://localhost:11434/api/tags
    ```
 
-2. **Clonar o projeto, Abrir o VS Code e Rodar o Projeto**
+2. **Clone o projeto, Abra o VS Code e Rode o projeto**
     ```bash
     git clone https://github.com/vinibanciela/CP5-HashtagGeneratorAPI-dotNet_Ollama.git
     cd HashtagGeneratorAPI-dotNet_Ollama
     code .
     dotnet run
     ```
-    (A API irá iniciar,  em http://localhost:5172)
+    (A API irá iniciar, em http://localhost:5172)
 
-4. **Testes rápidos**
+3. **Testes rápidos**
 
 Via arquivo `.http` (VS Code REST Client ou JetBrains)
 
